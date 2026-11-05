@@ -41,6 +41,8 @@ Express API ──────┼── Copilot SDK (@github/copilot-sdk)
 
 현재 데모는 `DATA_DIR/jobs.json`에 작업·지원·데모 구직자 데이터를 저장한다. 단일 인스턴스 해커톤 시연용이며 동시 쓰기/다중 인스턴스 환경의 데이터베이스로 간주하지 않는다. 실제 Azure 서비스에서는 Azure SQL 또는 Azure Storage를 사용하고 마이그레이션·접근제어를 추가한다.
 
+구직자의 관심 공고 ID와 이 브라우저에서 시작한 지원 ID는 브라우저 `localStorage`에 둔다. 지원 상태 자체는 `/api/jobs/:id/applicants`에서 다시 읽어 서버의 최신 상태를 표시한다. 로그인 없는 데모의 브라우저별 기록이므로 사용자 계정 간 동기화나 실제 신원 확인을 제공하지 않는다.
+
 ## Azure 배포 및 운영
 
 - Azure 리소스: Korea Central의 Linux App Service B1, Azure Container Registry Basic.

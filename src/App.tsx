@@ -86,6 +86,7 @@ function startVoiceInput(onText: (text: string) => void, onError: (message: stri
 export function App() {
   const [role, setRole] = useState<Role>("farmer");
   const [workerTab, setWorkerTab] = useState<WorkerTab>("jobs");
+  const [applyingJobId, setApplyingJobId] = useState("");
   const [jobs, setJobs] = useState<Job[]>([]);
   const [selectedJobId, setSelectedJobId] = useState("");
   const [draft, setDraft] = useState<JobDraft | null>(null);
@@ -118,9 +119,10 @@ export function App() {
       openJobs.filter(
         (job) =>
           (cropFilter === "전체" || job.crop === cropFilter) &&
-          (!availableDate || job.workDate === availableDate) &&
-          job.durationHours <= maxHours &&
-          job.wagePerHour >= minimumWage &&
+          (workerTab === "saved" ||
+            ((!availableDate || job.workDate === availableDate) &&
+              job.durationHours <= maxHours &&
+              job.wagePerHour >= minimumWage)) &&
           `${job.title} ${job.description} ${job.location} ${job.crop} ${job.difficulty}`
             .toLocaleLowerCase()
             .includes(searchQuery.trim().toLocaleLowerCase()) &&
@@ -209,6 +211,14 @@ export function App() {
     setWorkerTab(tab);
     setError("");
     if (tab === "applied") void refreshTrackedApplications();
+  }
+
+  function switchRole() {
+    const nextRole = role === "farmer" ? "worker" : "farmer";
+    setRole(nextRole);
+    setError("");
+    setSuccess("");
+    if (nextRole === "farmer" && selectedJobId) void loadJobDetails(selectedJobId);
   }
 
   function toggleBookmark(jobId: string) {
@@ -331,6 +341,7 @@ export function App() {
         ...trackedApplications,
         { jobId: job.id, applicantId: applicant.id, status: applicant.status },
       ];
+      setApplyingJobId("");
       try {
         localStorage.setItem(APPLICATIONS_STORAGE_KEY, JSON.stringify(nextApplications));
         setTrackedApplications(nextApplications);
@@ -409,7 +420,7 @@ export function App() {
         </a>
         <div className="topbar-right">
           <span className="location-pill"><span className="dot" /> 청도군 농작업 연결</span>
-          <button className="role-switch" onClick={() => { setRole(role === "farmer" ? "worker" : "farmer"); setError(""); setSuccess(""); }}>
+          <button className="role-switch" onClick={switchRole}>
             {role === "farmer" ? "구직자 화면 보기" : "농가 화면 보기"}
             <span aria-hidden="true">↗</span>
           </button>
@@ -575,7 +586,7 @@ export function App() {
         </section>
       ) : (
         <section className="worker-layout">
-          <nav className="worker-nav" aria-label="구직자 메뉴">
+          <nav className="worker-nav" role="tablist" aria-label="구직자 메뉴">
             <button role="tab" aria-selected={workerTab === "jobs"} className={workerTab === "jobs" ? "active" : ""} onClick={() => selectWorkerTab("jobs")}>일자리 찾기</button>
             <button role="tab" aria-selected={workerTab === "saved"} className={workerTab === "saved" ? "active" : ""} onClick={() => selectWorkerTab("saved")}>관심 <span>{bookmarkedJobIds.length}</span></button>
             <button role="tab" aria-selected={workerTab === "applied"} className={workerTab === "applied" ? "active" : ""} onClick={() => selectWorkerTab("applied")}>지원 현황 <span>{trackedApplications.length}</span></button>
@@ -614,7 +625,35 @@ export function App() {
               <div className="job-facts"><span>▣ {job.workDate} {job.startTime}</span><span>◷ {job.durationHours}시간</span><span>♧ {job.difficulty}</span><span>필요 인원 {job.workersNeeded}명</span></div>
               <div className="wage-row"><strong>{job.wagePerHour.toLocaleString()}<small>원/시간</small></strong><span>급여 기준은 농가 등록 정보</span></div>
               {job.safetyNotes && <p className="safety-inline">안전 안내 · {job.safetyNotes}</p>}
-              <button className="button-primary full-button" disabled={loading === `apply-${job.id}` || trackedApplications.some((application) => application.jobId === job.id)} onClick={() => apply(job)}>{loading === `apply-${job.id}` ? "신청 중..." : trackedApplications.some((application) => application.jobId === job.id) ? "지원 완료 · 현황 보기" : "이 작업에 지원하기 →"}</button>
+              {trackedApplications.some((application) => application.jobId === job.id) ? (
+                <button className="button-primary full-button" onClick={() => selectWorkerTab("applied")}>지원 완료 · 지원 현황 보기</button>
+              ) : (
+                <button
+                  className="button-primary full-button"
+                  aria-expanded={applyingJobId === job.id}
+                  aria-controls={`apply-form-${job.id}`}
+                  onClick={() => {
+                    setError("");
+                    setApplyingJobId((current) => current === job.id ? "" : job.id);
+                  }}
+                >
+                  {applyingJobId === job.id ? "지원서 닫기" : "이 작업에 지원하기 →"}
+                </button>
+              )}
+              {applyingJobId === job.id && !trackedApplications.some((application) => application.jobId === job.id) && (
+                <div className="application-form" id={`apply-form-${job.id}`}>
+                  <strong>지원 내용을 확인해 주세요</strong>
+                  <p>{job.workDate} · 최대 {maxHours}시간 · 희망 시급 {minimumWage.toLocaleString()}원 · 선호 강도 {preferredDifficulty}</p>
+                  <Field label="지원자 이름 또는 별칭">
+                    <input autoFocus value={name} onChange={(event) => setName(event.target.value)} placeholder="이름 또는 별칭" maxLength={60} />
+                  </Field>
+                  <p className="privacy-note">지원 정보는 데모 서버에 저장되어 농가 화면에 표시됩니다. 실제 개인정보는 입력하지 마세요.</p>
+                  <button className="button-primary full-button" disabled={loading === `apply-${job.id}`} onClick={() => apply(job)}>
+                    {loading === `apply-${job.id}` ? "지원 등록 중..." : "내용 확인 후 지원 등록"}
+                  </button>
+                  {error && <p className="application-error" role="alert">{error}</p>}
+                </div>
+              )}
             </article>
           ))}</div>}</>}
         </section>
