@@ -1,0 +1,33 @@
+{
+  "name": "cheongdo-hands-on",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "일손이음 - GitHub Copilot SDK와 Microsoft Agent Framework로 농가 작업 조율을 돕는 모바일 웹앱",
+  "engines": { "node": ">=22.12.0" },
+  "scripts": {
+    "dev": "concurrently -n server,web -c blue,green \"tsx watch server/index.ts\" \"vite\"",
+    "build": "vite build",
+    "start": "tsx server/index.ts",
+    "typecheck": "tsc --noEmit",
+    "setup:agent-framework": "python -m pip install -r agent_service/requirements.txt"
+  },
+  "dependencies": {
+    "@github/copilot-sdk": "^1.0.28",
+    "express": "^4.21.2",
+    "tsx": "^4.19.2",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.10.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "concurrently": "^9.1.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.3"
+  }
+}
