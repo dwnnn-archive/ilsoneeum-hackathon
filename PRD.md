@@ -2,49 +2,47 @@
 
 ## Product
 
-**일손이음** is a mobile-first service concept connecting Cheongdo County farms that need seasonal help with young people seeking local, short-term work and agricultural experience.
+**일손이음** is a mobile-first demo connecting Cheongdo farms with young people seeking short-term rural work.
 
 ## Problem
 
-Farmers can struggle to find workers when seasonal work is needed. Young people often cannot easily compare the work, schedule, location, and pay before deciding whether to participate. There is no convenient shared place in this prototype to present those conditions and express interest.
+Farmers can struggle to find workers at seasonal peaks. Young people often cannot compare work, schedule, location, and pay before deciding whether to participate.
 
 ## Goals
 
-- Let young people browse and filter work by keyword, category, schedule, and pay.
-- Show the work description, location, date, hours, and daily pay before an application.
-- Let a farmer enter the conditions for a work listing with a low-friction form.
-- Offer optional AI assistance to compare sample listings and draft clearer descriptions.
-- Keep core browsing, application, and listing-demo flows usable without sign-in or AI credentials.
-- Design for mobile first while supporting desktop layouts.
+- Let young people browse and filter clearly labeled example listings.
+- Show task description, location, date, hours, daily pay, and headcount before a demo application.
+- Let farmers create and review a listing draft without inventing missing work conditions.
+- Offer optional GitHub Copilot matching guidance and Microsoft Agent Framework description suggestions.
+- Keep browsing, applications, and rule-based posting available when AI is unconfigured.
+- Provide a responsive interface for mobile and desktop.
 
-## Users
+## Users and primary flows
 
-- **Young worker:** reviews opportunities and records a demo application.
-- **Farmer:** enters a work listing and can request an optional description draft.
+### Young worker
 
-## Primary flows
+1. Browse example listings from the home screen.
+2. Search or filter by work type and inspect conditions.
+3. Optionally request a Copilot-assisted comparison of up to ten matching listings.
+4. Save an example application locally and revisit it in the application tab.
 
-1. Browse, search, filter, and sort sample farm-work listings.
-2. Open a listing, review its conditions, and save a demo application locally.
-3. Switch to farmer mode, enter listing details, optionally request an AI description, and save the demo listing locally.
-4. Review saved demo applications and listings in the same browser.
+### Farmer
 
-## Non-goals and limitations
+1. Open the farmer dashboard and enter a work description.
+2. Optionally ask Microsoft Agent Framework for a clearer description.
+3. Review the extracted or manually completed title, category, location, date, hours, pay, headcount, and description.
+4. Save an example listing in this browser and inspect demo applications.
 
-- This prototype does not authenticate users or transmit applications to farms.
-- Listings, pay, and applications are illustrative and stored in browser local storage.
-- It is not a production marketplace, employment service, payment system, or verification service.
-- AI output is advisory, may be inaccurate, and must not be treated as verified work conditions.
-- No real-world impact or service outcome is claimed.
+## Scope and limitations
+
+- Listings are illustrative and are not real vacancies or verified offers.
+- Applications and farmer-created listings stay in this browser's local storage; applications are not sent to farms or the server.
+- Do not enter real names, phone numbers, or other personal information in demo applications or AI prompts.
+- Copilot receives the user's short preference and bounded listing fields. Microsoft Agent Framework receives the draft title, category, location, and description. The server rejects obvious phone and email patterns.
+- AI output is advisory and may be inaccurate. It never sets authoritative schedule or pay, and the farmer must review all fields before saving a demo listing.
+- No user authentication, persistent service database, real matching, payment, employment contract, or verified program outcomes are provided.
+- Azure App Service container configuration is included; no Azure resource deployment or live provider connectivity is claimed.
 
 ## Success signals for a future pilot
 
-Measure listing completion, successful condition searches, application-flow completion, and user-reported clarity. Establish a baseline with a supervised local pilot before setting targets; this prototype has no production analytics.
-
-## Acceptance criteria
-
-- Primary browse, detail, demo-apply, and create-listing flows work without login.
-- Layout remains usable on small mobile screens and larger screens.
-- Demo data and local-only actions are clearly labeled.
-- AI integrations are optional, expose their availability and errors, and do not block core flows.
-- Input is validated server-side and provider credentials remain server-side.
+Measure listing completion, successful condition searches, application-flow completion, and user-reported clarity in a supervised pilot before setting targets. This prototype has no production analytics.

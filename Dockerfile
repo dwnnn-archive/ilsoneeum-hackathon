@@ -10,14 +10,13 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 COPY package.json package-lock.json ./
-RUN npm ci
+RUN npm ci --omit=dev
 
 COPY agent_service/requirements.txt ./agent_service/requirements.txt
 RUN python3 -m venv /opt/agent-venv \
     && /opt/agent-venv/bin/pip install --no-cache-dir -r agent_service/requirements.txt
 
 COPY . .
-RUN npm run build
 
 EXPOSE 8080
 

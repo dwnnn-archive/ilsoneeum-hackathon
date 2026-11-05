@@ -1,97 +1,74 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-05T14:45:42+09:00",
   "title": "Design System: 일손이음",
   "extensions": {
     "colorMeta": {
+      "primary": {
+        "role": "primary",
+        "displayName": "따뜻한 오렌지",
+        "canonical": "#b94e0c",
+        "tonalRamp": ["#321200", "#562100", "#783006", "#963b08", "#b94e0c", "#d56c32", "#ed9a65", "#f7c7a2"]
+      },
+      "primary-tint": {
+        "role": "secondary",
+        "displayName": "연한 오렌지",
+        "canonical": "#fff1e5",
+        "tonalRamp": ["#321200", "#562100", "#783006", "#963b08", "#b94e0c", "#d56c32", "#ed9a65", "#fff1e5"]
+      },
+      "page": {
+        "role": "neutral",
+        "displayName": "밝은 회색 바탕",
+        "canonical": "#f7f7fa",
+        "tonalRamp": ["#242326", "#45444a", "#66656c", "#85848b", "#a4a3aa", "#c1c0c6", "#dedde2", "#f7f7fa"]
+      },
       "paper": {
         "role": "neutral",
-        "displayName": "온백색 용지",
-        "canonical": "#faf6f5",
-        "tonalRamp": ["#0d0a0a", "#272423", "#444140", "#64605f", "#858180", "#a8a4a3", "#ccc8c7", "#f1edec"]
-      },
-      "paper-green": {
-        "role": "tertiary",
-        "displayName": "정보 녹색",
-        "canonical": "#eef3ef",
-        "tonalRamp": ["#090c0a", "#222623", "#3f4340", "#5e625f", "#7f8480", "#a2a6a3", "#c6cbc7", "#ebf0ec"]
+        "displayName": "백색 표면",
+        "canonical": "#ffffff",
+        "tonalRamp": ["#242326", "#45444a", "#66656c", "#85848b", "#a4a3aa", "#c1c0c6", "#dedde2", "#ffffff"]
       },
       "ink": {
-        "role": "primary",
-        "displayName": "기록 먹색",
-        "canonical": "#16181a",
-        "tonalRamp": ["#0a0b0d", "#232527", "#404245", "#5f6164", "#808385", "#a2a5a8", "#c7c9cc", "#eceff2"]
-      },
-      "muted": {
         "role": "neutral",
-        "displayName": "보조 잉크",
-        "canonical": "#585a5d",
-        "tonalRamp": ["#0a0b0d", "#232528", "#404245", "#5f6164", "#808286", "#a3a5a8", "#c7c9cd", "#eceff2"]
+        "displayName": "기본 잉크",
+        "canonical": "#242326",
+        "tonalRamp": ["#121113", "#242326", "#45444a", "#66656c", "#85848b", "#a4a3aa", "#c1c0c6", "#dedde2"]
       },
-      "line": {
-        "role": "neutral",
-        "displayName": "규칙선 회색",
-        "canonical": "#c9c7c4",
-        "tonalRamp": ["#0c0b09", "#262522", "#43423f", "#63615e", "#84827f", "#a6a4a2", "#cbc9c6", "#f0eeeb"]
-      },
-      "registration-lilac": {
-        "role": "secondary",
-        "displayName": "등록 라일락",
-        "canonical": "#66688f",
-        "tonalRamp": ["#090623", "#212042", "#3d3e62", "#5b5d83", "#7c7ea7", "#9ea1cb", "#c2c5f1", "#e7eaff"]
-      },
-      "registration-lilac-pale": {
-        "role": "secondary",
-        "displayName": "연한 등록 라일락",
-        "canonical": "#dcdcf0",
-        "tonalRamp": ["#0a0916", "#242332", "#404050", "#5f5f70", "#808092", "#a3a3b6", "#c7c7db", "#ececff"]
-      },
-      "success": {
-        "role": "success",
-        "displayName": "완료 녹색",
-        "canonical": "#285d46",
-        "tonalRamp": ["#001303", "#002f1b", "#174d37", "#396e56", "#5a9076", "#7db398", "#a1d8bc", "#c5fee1"]
+      "field-green": {
+        "role": "tertiary",
+        "displayName": "들판 초록",
+        "canonical": "#7eaa70",
+        "tonalRamp": ["#192214", "#33462c", "#4b663f", "#668b59", "#7eaa70", "#9ab78d", "#b7cba1", "#d9e3cb"]
       },
       "danger": {
         "role": "danger",
         "displayName": "오류 적색",
         "canonical": "#a4352b",
-        "tonalRamp": ["#340000", "#590000", "#7f0a07", "#a5362c", "#cc594c", "#f37d6e", "#ffa291", "#ffc7b5"]
-      },
-      "white": {
-        "role": "neutral",
-        "displayName": "백색 카드",
-        "canonical": "#ffffff",
-        "tonalRamp": ["#0b0b0b", "#252525", "#424242", "#616161", "#828282", "#a5a5a5", "#c9c9c9", "#eeeeee"]
+        "tonalRamp": ["#340000", "#590000", "#7f0a07", "#a4352b", "#cc594c", "#f37d6e", "#ffa291", "#ffc7b5"]
       }
     },
     "typographyMeta": {
       "display": {
-        "displayName": "페이지 제목",
-        "purpose": "작업 목록과 주요 화면의 첫 제목."
+        "displayName": "화면 제목",
+        "purpose": "홈과 주요 화면의 주 제목."
       },
-      "label": {
-        "displayName": "조건 라벨",
-        "purpose": "날짜, 시간, 급여와 예시 상태를 빠르게 구분."
+      "body": {
+        "displayName": "본문",
+        "purpose": "공고 설명과 사용 안내."
       }
     },
     "shadows": [],
     "motion": [
       {
-        "name": "seal-turn",
-        "value": "30s linear infinite",
-        "purpose": "예시 씰의 느린 등록 인쇄 모티프."
-      },
-      {
-        "name": "state-transition",
-        "value": "180ms ease",
-        "purpose": "레코드 hover와 선택 상태의 배경·테두리 전환."
+        "name": "control-transition",
+        "value": "180ms",
+        "purpose": "검색, 카드, 버튼 상태를 짧게 전환."
       }
     ],
     "breakpoints": [
-      { "name": "wide", "value": "1240px" },
-      { "name": "compact", "value": "980px" },
-      { "name": "mobile", "value": "700px" }
+      {
+        "name": "mobile",
+        "value": "760px"
+      }
     ]
   },
   "components": [
@@ -99,87 +76,53 @@
       "name": "Primary Action",
       "kind": "button",
       "refersTo": "button-primary",
-      "description": "신청이나 공고 등록에 쓰는 먹색 주요 행동 버튼.",
-      "html": "<button class=\"ds-primary-action\">이 일자리 신청하기 <svg viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M3 8h9M8 4l4 4-4 4\"/></svg></button>",
-      "css": ".ds-primary-action { width: 100%; min-height: 47px; display: flex; align-items: center; justify-content: center; gap: 9px; padding: 11px 13px; border: 1px solid #16181a; border-radius: 0; background: #16181a; color: #fff; font: 700 13px/1.4 Pretendard, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; cursor: pointer; transition: background-color 180ms ease; } .ds-primary-action svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.5; } .ds-primary-action:hover { background: #303236; } .ds-primary-action:focus-visible { outline: 3px solid #66688f; outline-offset: 3px; } .ds-primary-action:active { background: #16181a; }"
+      "description": "지원·등록과 같은 주요 행동.",
+      "html": "<button class=\"button button-primary\">일자리 둘러보기</button>",
+      "css": ".button-primary { min-height: 46px; padding: 0 20px; border: 0; border-radius: 9999px; color: #fff; background: #b94e0c; font-weight: 700; }"
     },
     {
-      "name": "Secondary Action",
-      "kind": "button",
-      "refersTo": "button-secondary",
-      "description": "가벼운 필터·보조 작업에 사용하는 선 중심 버튼.",
-      "html": "<button class=\"ds-secondary-action\">검색 조건 초기화</button>",
-      "css": ".ds-secondary-action { min-height: 40px; padding: 0 14px; border: 1px solid #c9c7c4; border-radius: 0; background: transparent; color: #16181a; font: 700 13px/1.4 Pretendard, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; cursor: pointer; transition: background-color 180ms ease, border-color 180ms ease; } .ds-secondary-action:hover { border-color: #66688f; background: #f4f3f8; } .ds-secondary-action:focus-visible { outline: 3px solid #66688f; outline-offset: 3px; } .ds-secondary-action:active { background: #dcdcf0; }"
-    },
-    {
-      "name": "Search Field",
-      "kind": "input",
-      "refersTo": "input-search",
-      "description": "작업명과 지역을 찾는 각진 백색 입력란.",
-      "html": "<label class=\"ds-search-field\"><span class=\"ds-search-label\">작업명 또는 지역 검색</span><input type=\"search\" placeholder=\"작업명이나 지역을 검색하세요\"></label>",
-      "css": ".ds-search-field { height: 42px; display: flex; align-items: center; padding: 0 11px; border: 1px solid #c9c7c4; border-radius: 0; background: #fff; } .ds-search-field input { width: 100%; height: 100%; padding: 0; border: 0; outline: 0; background: transparent; color: #16181a; font: 13px/1.4 Pretendard, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; } .ds-search-field input::placeholder { color: #626469; opacity: 1; } .ds-search-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; } .ds-search-field:focus-within { outline: 3px solid #66688f; outline-offset: 3px; }"
-    },
-    {
-      "name": "Sample Label",
-      "kind": "chip",
-      "refersTo": "job-label--sample",
-      "description": "실제 모집 정보와 구별하는 체험용 예시 상태.",
-      "html": "<span class=\"ds-sample-label\">체험용 예시</span>",
-      "css": ".ds-sample-label { min-height: 21px; display: inline-flex; align-items: center; padding: 2px 6px; border: 1px solid #c9c8df; border-radius: 0; background: #f4f3fa; color: #45466c; font: 10px/1.3 ui-monospace, 'SFMono-Regular', Consolas, monospace; letter-spacing: .025em; white-space: nowrap; }"
-    },
-    {
-      "name": "Job Record",
+      "name": "Job Card",
       "kind": "card",
-      "refersTo": "job-row",
-      "description": "작업명·위치·일정·일급을 맞춰 보여주는 공고 레코드.",
-      "html": "<article class=\"ds-job-record\"><div><h3>감 수확 보조</h3><span class=\"ds-sample-label\">체험용 예시</span><p>청도군 화양읍 · 수확</p></div><div><small>작업 날짜</small><strong>11월 12일 (목)</strong></div><div><small>근무 시간</small><strong>08:00–17:00</strong></div><div><small>일급</small><strong>100,000원</strong></div></article>",
-      "css": ".ds-job-record { min-height: 152px; display: grid; grid-template-columns: 1.35fr .92fr .85fr .9fr; align-items: center; gap: 13px; padding: 24px 23px; border: 1px solid #c9c7c4; border-radius: 0; background: #fff; color: #16181a; transition: background-color 180ms ease, border-color 180ms ease; } .ds-job-record:hover { border-color: #9997a9; background: #fcfbfc; } .ds-job-record h3 { display: inline; margin: 0 8px 0 0; font: 700 17px/1.4 Pretendard, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; } .ds-job-record p { margin: 10px 0 0; color: #515358; font: 12px/1.4 Pretendard, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; } .ds-job-record div:not(:first-child) { display: flex; flex-direction: column; gap: 8px; } .ds-job-record small { color: #55575b; font: 11px/1.35 ui-monospace, 'SFMono-Regular', Consolas, monospace; } .ds-job-record strong { font: 700 12px/1.4 Pretendard, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; font-variant-numeric: tabular-nums; } .ds-job-record:focus-within { outline: 3px solid #66688f; outline-offset: 3px; }"
+      "refersTo": "job-card",
+      "description": "시연용 공고의 작업명과 조건을 보여주는 카드.",
+      "html": "<article class=\"job-card\"><span class=\"job-tag sample-tag\">시연용 샘플</span><h3>감 수확 보조</h3><p>청도군 화양읍 · 08:00–17:00 · 100,000원/일</p></article>",
+      "css": ".job-card { padding: 19px; border: 0; border-radius: 16px; background: #fff; color: #242326; }"
     },
     {
-      "name": "Sample Seal",
-      "kind": "custom",
-      "refersTo": "sample-seal",
-      "description": "예시 공고임을 원형 등록 인쇄 모티프로 표시.",
-      "html": "<div class=\"ds-sample-seal\"><span>체험용<br>예시 공고</span></div>",
-      "css": ".ds-sample-seal { width: 76px; height: 76px; display: grid; place-items: center; border: 1px solid #8d8eae; border-radius: 50%; color: #55577f; text-align: center; font: 700 10px/1.3 Pretendard, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; } .ds-sample-seal:hover { transform: translateY(-4px) rotate(-5deg); } .ds-sample-seal:focus-visible { outline: 3px solid #66688f; outline-offset: 3px; }"
-    },
-    {
-      "name": "Section Navigation",
-      "kind": "nav",
-      "refersTo": "side-link",
-      "description": "현재 작업 위치를 얕은 라일락 면으로 표시하는 탐색 항목.",
-      "html": "<nav class=\"ds-navigation\"><a href=\"#jobs\" class=\"ds-nav-item ds-nav-item-active\">일자리 찾기</a><a href=\"#applications\" class=\"ds-nav-item\">내 신청 내역</a></nav>",
-      "css": ".ds-navigation { display: flex; flex-direction: column; gap: 2px; } .ds-nav-item { min-height: 45px; display: flex; align-items: center; padding: 0 10px; color: #414347; text-decoration: none; font: 13px/1.4 Pretendard, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; } .ds-nav-item:hover { background: #f4f3f8; } .ds-nav-item-active { background: #e8e7ed; color: #16181a; font-weight: 700; } .ds-nav-item:focus-visible { outline: 3px solid #66688f; outline-offset: 3px; }"
+      "name": "AI Assistance",
+      "kind": "panel",
+      "refersTo": "assist-panel",
+      "description": "선택형 Copilot 조건 비교와 Agent Framework 문장 제안.",
+      "html": "<section class=\"assist-panel\"><h3>내 조건에 맞는 일자리 찾기</h3><input aria-label=\"희망 조건\"><button>조건으로 찾아보기</button></section>",
+      "css": ".assist-panel { padding: 20px; border: 1px solid #f0dfd1; border-radius: 16px; background: #fff7f0; }"
     }
   ],
   "narrative": {
-    "northStar": "농촌 작업대의 기록판",
-    "overview": "일손이음은 온백색 작업면, 기록 먹색 글자, 등록 라일락 표식을 사용해 농작업을 홍보 카드가 아닌 읽기 쉬운 작업 기록으로 다룹니다. 청년이 작업 내용과 일정, 급여를 빠르게 비교할 수 있도록 조건을 먼저 보여주고, 농가에는 같은 조건을 간결하게 등록하는 흐름을 제공합니다.\n\n사용자가 선택한 인상은 기술적이고 대비가 분명한 도구입니다. 평면적인 면과 가는 선으로 구조를 만들고, 날짜와 예시 상태는 고정폭 글꼴로 구별합니다. 현재 앱은 프로토타입이며, 모든 예시 공고와 브라우저 내 변경 사항은 실제 모집이나 신청으로 오해되지 않도록 표시합니다.",
+    "northStar": "청도의 들판으로 이어지는 일자리",
+    "overview": "따뜻한 오렌지, 둥근 흰색 표면, 청도 들판을 떠올리는 단순한 풍경이 사용자가 제공한 시각 기준이다. 작업 조건은 먼저 읽히고, AI는 선택 기능이며, 모든 공고와 로컬 활동은 시연용임을 분명히 한다.",
     "keyCharacteristics": [
-      "조건이 먼저 읽히는 작업 레코드",
-      "기록 먹색과 등록 라일락의 제한된 대비",
-      "날짜와 예시 상태에 쓰는 고정폭 라벨",
-      "그림자보다 얇은 선과 종이 톤으로 만드는 평면 구조",
-      "실제 정보와 체험용 예시를 구분하는 명시적 표식"
+      "따뜻한 오렌지 주요 행동",
+      "둥근 흰색 공고 카드",
+      "청도 들판을 추상화한 CSS 풍경",
+      "모바일 하단 작업 내비게이션",
+      "탐색·등록 흐름에 붙는 선택형 AI 도구"
     ],
     "rules": [
       {
-        "name": "The Ink and Registration Rule",
-        "body": "작업 내용은 기록 먹색으로 읽히게 하고 등록 라일락은 상태를 구분하는 표식으로 아껴 씁니다. 정보 녹색은 안내 면에만 사용합니다.",
-        "section": "colors"
+        "name": "Conditions Before Claims",
+        "body": "작업, 날짜, 시간, 위치, 급여, 인원을 확인할 수 있게 한다. 샘플을 실제 채용이나 입증된 성과로 표현하지 않는다.",
+        "section": "responsible-presentation"
       }
     ],
     "dos": [
-      "Do 작업명, 날짜, 시간, 일급을 공고 레코드에서 한눈에 비교할 수 있게 유지합니다.",
-      "Do 예시 공고와 브라우저 안에서만 저장되는 상태를 명확한 문구로 표시합니다.",
-      "Do 등록 라일락은 선택·등록 표식에, 정보 녹색은 안내 표면에 사용합니다.",
-      "Do 키보드 포커스가 라일락 윤곽으로 보이게 유지합니다."
+      "Do label illustrative listings and local-only actions.",
+      "Do keep AI suggestions editable and explicitly reviewable.",
+      "Do use orange for actions and semantic colors for state."
     ],
     "donts": [
-      "Don't 체험용 공고를 실제 모집이나 검증된 지역 프로그램처럼 표현하지 않습니다.",
-      "Don't 날짜·급여 같은 작업 조건을 추상적인 장식이나 긴 홍보 문구보다 뒤에 숨기지 않습니다.",
-      "Don't 실제 코드에 없는 색상, 그림자, 브랜드 자산을 디자인 토큰으로 추가하지 않습니다.",
-      "Don't 단순한 표면에 강한 입체감이나 과한 모서리 곡률을 더하지 않습니다."
+      "Don't claim verified work, placements, or measurable impact.",
+      "Don't send application contact fields to AI providers.",
+      "Don't let AI supply missing schedule or pay as facts."
     ]
   }
 }
