@@ -1,0 +1,74 @@
+name: Build and deploy to Azure
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  REGISTRY: ilsoneeumacr1105.azurecr.io
+  IMAGE_NAME: ilsoneeum
+  RESOURCE_GROUP: rg-ilsoneeum-hackathon
+  APP_NAME: ilsoneeum-demo-2026
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Log in to Azure Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ secrets.ACR_USERNAME }}
+          password: ${{ secrets.ACR_PASSWORD }}
+
+      - name: Build and push container
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: |
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+
+      - name: Log in to Azure
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Configure and restart Azure App Service container
+        shell: bash
+        run: |
+          az webapp config appsettings set \
+            --resource-group "$RESOURCE_GROUP" \
+            --name "$APP_NAME" \
+            --settings WEBSITES_PORT=8080 WEBSITES_CONTAINER_START_TIME_LIMIT=600
+          az webapp config container set \
+            --resource-group "$RESOURCE_GROUP" \
+            --name "$APP_NAME" \
+            --container-image-name "${REGISTRY}/${IMAGE_NAME}:${GITHUB_SHA}" \
+            --container-registry-url "https://${REGISTRY}" \
+            --container-registry-user "${{ secrets.ACR_USERNAME }}" \
+            --container-registry-password "${{ secrets.ACR_PASSWORD }}"
+          az webapp restart \
+            --resource-group "$RESOURCE_GROUP" \
+            --name "$APP_NAME"
+
+      - name: Verify deployment health
+        shell: bash
+        run: |
+          for attempt in {1..36}; do
+            if curl --fail --silent --show-error https://ilsoneeum-demo-2026.azurewebsites.net/api/health; then
+              exit 0
+            fi
+            sleep 10
+          done
+          echo "Azure App Service did not become healthy within 6 minutes."
+          exit 1
